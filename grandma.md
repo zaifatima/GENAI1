@@ -33,6 +33,7 @@ So it’s like a smart music search.
 
 
 ## How it generates lyrics
+click << button on the left side of the screen click lyrics
 
 * The app sends a message to an AI (Gemini) (using Gemini API)
 * It tells the AI:
@@ -232,6 +233,6 @@ My code:
 That’s it.
 
 
-
+All images are available in images.txt folder
 
 
