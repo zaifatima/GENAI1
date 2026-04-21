@@ -5,3 +5,4 @@ opencv-python
 fer
 streamlit-webrtc
 isodate
+textblob
