@@ -1,13 +1,10 @@
-import google.generativeai as genai
+from google import genai
 import streamlit as st
 
-# Configure API
-genai.configure(api_key=st.secrets.get("GEMINI_API_KEY"))
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 def generate_lyrics(mood, theme, language):
     try:
-        model = genai.GenerativeModel("models/gemini-1.5-flash")  # ✅ FIXED MODEL NAME
-
         prompt = f"""
         Write powerful original song lyrics.
 
@@ -23,9 +20,12 @@ def generate_lyrics(mood, theme, language):
         Make it emotional, catchy, and meaningful.
         """
 
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=prompt
+        )
 
-        return response.text if response.text else "No lyrics generated."
+        return response.text
 
     except Exception as e:
-        return "⚠️ Error: Check Gemini API key or model access."
+        return f"⚠️ Error: {str(e)}"
