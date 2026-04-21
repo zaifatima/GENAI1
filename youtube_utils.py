@@ -2,12 +2,11 @@ import os
 from googleapiclient.discovery import build
 from dotenv import load_dotenv
 import isodate
-
+import streamlit as st
 # -----------------------------
 # LOAD API KEY
 # -----------------------------
-load_dotenv()
-API_KEY = os.getenv("YOUTUBE_API_KEY")
+API_KEY = st.secrets["YOUTUBE_API_KEY"]
 
 # -----------------------------
 # CREATE CLIENT
