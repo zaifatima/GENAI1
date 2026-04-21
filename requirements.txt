@@ -2,3 +2,4 @@ streamlit
 google-api-python-client
 textblob
 google-genai
+python-dotenv
