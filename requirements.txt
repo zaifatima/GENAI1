@@ -1,10 +1,4 @@
 streamlit
 google-api-python-client
-python-dotenv
-opencv-python
-fer
-streamlit-webrtc
-isodate
 textblob
-openai
 google-genai
