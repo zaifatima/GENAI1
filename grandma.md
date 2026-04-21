@@ -18,7 +18,9 @@ Let me explain how my project works in very simple words.
 
 The app uses this to understand their mood.
 
----
+
+
+
 
 ## How it suggests songs
 
@@ -29,7 +31,6 @@ The app uses this to understand their mood.
 
 So it’s like a smart music search.
 
----
 
 ## How it generates lyrics
 
@@ -43,18 +44,13 @@ So it’s like a smart music search.
 
 So the app doesn’t write lyrics itself — it asks a smart AI to do it (Gemini in this case).
 
----
-
 ## What are API keys?
 
 API keys are like secret passwords that let my app talk to other services.
 
 Without them, the app cannot work.
 
----
-
 ## APIs I used
-
 ### 1. Gemini API (for lyrics)
 
 * This is the AI that writes songs
@@ -62,12 +58,8 @@ Without them, the app cannot work.
 * I created a key and added it to my app
 
 Used for:
-
 * generating lyrics
-
----
-
-### 2. YouTube API (for songs)
+2. YouTube API (for songs)
 
 * This helps my app search YouTube
 * I got it from Google Cloud Console
@@ -75,11 +67,7 @@ Used for:
 Used for:
 
 * finding music videos
-
----
-
 ## Where I stored the keys
-
 I did NOT put them directly in my code (for safety)
 
 Instead, I used:
@@ -89,8 +77,6 @@ Instead, I used:
 
 These are stored securely in Streamlit secrets.
 
----
-
 ## How everything connects (coding part)
 
 * User gives mood → app understands feeling
@@ -99,13 +85,9 @@ These are stored securely in Streamlit secrets.
 
 So everything works together like a team.
 
----
-
 ## In one line
 
 My app understands feelings, finds music, and writes songs using AI.
-
----
 
 # Important Code Explained (Simple)
 
@@ -126,8 +108,6 @@ It:
 
 Think of this as the brain of the app.
 
----
-
 ## Mood Detection
 
 In the code, we decide the mood using simple rules:
@@ -146,8 +126,6 @@ Other checks:
 
 So the app converts answers into one clear mood.
 
----
-
 ## YouTube Music Search (youtube_utils.py)
 
 This file talks to YouTube.
@@ -162,8 +140,6 @@ What it does:
 * Sends it to YouTube
 * Gets video results back
 
----
-
 ### Cleaning results:
 
 (if video["duration"] > 900: return False)
@@ -173,8 +149,6 @@ Removes:
 * very long videos
 * playlists
 * unwanted content
-
----
 
 ### Ranking system:
 
@@ -186,8 +160,6 @@ Gives higher score to:
 * trusted channels
 
 So users see better quality songs first.
-
----
 
 ## Gemini Lyrics Generator (lyrics_generator.py)
 
@@ -203,7 +175,6 @@ What happens here:
 * The AI writes lyrics
 * We get the result back
 
----
 
 ### Prompt example:
 
@@ -214,7 +185,6 @@ This tells the AI:
 * what kind of song to write
 * what feeling to include
 
----
 
 ## Connecting Everything Together
 
@@ -240,8 +210,6 @@ App → Gemini API → generates lyrics → shows them
 
 User → App → Mood → YouTube (songs) → Gemini (lyrics) → Results
 
----
-
 ## Simple working idea
 
 Think of the app like a team:
@@ -252,7 +220,6 @@ Think of the app like a team:
 
 They all work together to help the user.
 
-
 ## Final understanding
 
 My code:
@@ -261,7 +228,6 @@ My code:
 * finds music
 * creates lyrics
 * shows everything in one app
-
 
 That’s it.
 
