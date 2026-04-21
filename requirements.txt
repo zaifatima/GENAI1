@@ -6,3 +6,4 @@ fer
 streamlit-webrtc
 isodate
 textblob
+openai
