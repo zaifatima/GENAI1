@@ -7,3 +7,4 @@ streamlit-webrtc
 isodate
 textblob
 openai
+google-generativeai
