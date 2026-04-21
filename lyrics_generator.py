@@ -1,7 +1,10 @@
-from openai import OpenAI
+import google.generativeai as genai
 import streamlit as st
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
+model = genai.GenerativeModel("gemini-1.5-flash")
+
 
 def generate_lyrics(mood, theme, language):
 
@@ -18,15 +21,9 @@ def generate_lyrics(mood, theme, language):
     - Verse 2
 
     Make it emotional, catchy, and meaningful.
+    Use rhyming and vivid imagery.
     """
 
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "You are a professional songwriter."},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.9
-    )
+    response = model.generate_content(prompt)
 
-    return response.choices[0].message.content
+    return response.text
