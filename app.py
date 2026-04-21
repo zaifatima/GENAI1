@@ -1,7 +1,8 @@
 import streamlit as st
 from youtube_utils import get_youtube_client, search_music, explain
 from textblob import TextBlob
-
+from openai import OpenAI
+import streamlit as st
 st.set_page_config(page_title="AI Mood Music", layout="wide")
 
 # -----------------------------
@@ -310,3 +311,50 @@ if st.button("🎶 Recommend Songs"):
             """, unsafe_allow_html=True)
 
             st.markdown('</div>', unsafe_allow_html=True)
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+def generate_lyrics(mood, theme, language):
+
+    mood_styles = {
+        "self growth": "uplifting, motivational, rising from struggles",
+        "self doubt": "vulnerable, introspective, emotional",
+        "heartbroken": "painful, longing, poetic",
+        "in love": "dreamy, warm, passionate",
+        "in pain": "raw, intense, deep",
+        "go with the flow": "chill, carefree, smooth",
+        "romantic": "soft, poetic love",
+        "failed": "struggle, reflection, comeback",
+        "success": "confident, powerful, winning",
+        "calm": "peaceful, soothing, slow"
+    }
+
+    style = mood_styles.get(mood.lower(), "emotional")
+
+    prompt = f"""
+    Write powerful original song lyrics.
+
+    Mood: {mood}
+    Theme: {theme}
+    Language: {language}
+
+    Style: {style}
+
+    Structure:
+    - Verse 1
+    - Chorus (catchy)
+    - Verse 2
+
+    Make it emotional, meaningful, and rhyming.
+    """
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are a professional songwriter."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.9
+    )
+
+    return response.choices[0].message.content
+            
