@@ -17,11 +17,11 @@ def generate_lyrics(mood, theme, language):
         Chorus
         Verse 2
 
-        Make it emotional, catchy, and meaningful.
+        Make it emotional and meaningful.
         """
 
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-1.5-flash",   # ✅ NO "models/"
             contents=prompt
         )
 
